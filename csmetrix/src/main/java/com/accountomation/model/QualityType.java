@@ -17,6 +17,7 @@ public class QualityType {
 	
 	private int id;
 	private String name;
+	private String description;
 	private List<QualityScore> qualityScores;
 	
 	public QualityType() {
@@ -55,6 +56,15 @@ public class QualityType {
 
 	public void setQualityScores(List<QualityScore> qualityScore) {
 		this.qualityScores = qualityScore;
+	}
+
+	@Column(name = "QTdescription")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
