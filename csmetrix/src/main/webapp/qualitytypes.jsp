@@ -8,10 +8,25 @@
 <title>Quality types</title>
 </head>
 <body>
-<h1>Quality types</h1>
-<br />
-<c:set var="employee" value="${employee.name }"/>
-
-<strong>Employee: </strong><c:out value="${employee.name }"/>
+	<h1>Quality types</h1>
+	<br />
+	<form name="frmAddQuality" method="POST" action="QualityTypesController">
+		<Strong>Name: </Strong><input type="text" name="txtName"><br />
+		<Strong>Description: </Strong><br />
+		<input type="text" name="txtDescription"><br />
+		<button type="submit" name="btnSubmit">Submit</button>
+	</form>
+	<table>
+		<tr>
+			<th>name</th>
+			<th>description</th>
+		</tr>
+		<c:forEach var="qt" items="${qts }">
+			<tr>
+				<td><c:out value="${qt.name }" /></td>
+				<td><c:out value="${qt.description }" /></td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

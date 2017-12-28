@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>QualityTypesServlet</display-name>
+    <servlet-name>QualityTypesServlet</servlet-name>
+    <servlet-class>com.accountomation.web.QualityTypesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QualityTypesServlet</servlet-name>
+    <url-pattern>/QualityTypesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QualityTypesController</display-name>
+    <servlet-name>QualityTypesController</servlet-name>
+    <servlet-class>com.accountomation.web.QualityTypesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QualityTypesController</servlet-name>
+    <url-pattern>/QualityTypesController</url-pattern>
+  </servlet-mapping>
 </web-app>

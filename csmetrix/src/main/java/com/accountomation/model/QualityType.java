@@ -28,6 +28,11 @@ public class QualityType {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public QualityType(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
