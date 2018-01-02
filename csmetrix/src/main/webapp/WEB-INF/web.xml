@@ -3,22 +3,8 @@
   <display-name>csmetrix</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>QualityTypesServlet</display-name>
-    <servlet-name>QualityTypesServlet</servlet-name>
-    <servlet-class>com.accountomation.web.QualityTypesServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>QualityTypesServlet</servlet-name>
-    <url-pattern>/QualityTypesServlet</url-pattern>
-  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>QualityTypesController</display-name>
@@ -27,6 +13,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>QualityTypesController</servlet-name>
-    <url-pattern>/QualityTypesController</url-pattern>
+    <url-pattern>/QualityTypes</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecordingsController</display-name>
+    <servlet-name>RecordingsController</servlet-name>
+    <servlet-class>com.accountomation.web.RecordingsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecordingsController</servlet-name>
+    <url-pattern>/Recordings</url-pattern>
   </servlet-mapping>
 </web-app>

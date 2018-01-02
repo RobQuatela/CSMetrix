@@ -17,10 +17,14 @@ public class RecordingQualityScore {
 	private long id;
 	private Recording recording;
 	private QualityScore qualityScore;
-	private String notes;
 	
 	public RecordingQualityScore() {
 		
+	}
+	
+	public RecordingQualityScore(Recording recording, QualityScore qualityScore) {
+		this.recording = recording;
+		this.qualityScore = qualityScore;
 	}
 
 	@Id
@@ -54,14 +58,5 @@ public class RecordingQualityScore {
 
 	public void setQualityScore(QualityScore qualityScore) {
 		this.qualityScore = qualityScore;
-	}
-
-	@Column(name = "RQSnotes")
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
 	}
 }

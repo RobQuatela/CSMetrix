@@ -1,5 +1,6 @@
 package com.accountomation.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ public class QualityType {
 	private int id;
 	private String name;
 	private String description;
-	private List<QualityScore> qualityScores;
+	private List<QualityScore> qualityScores = new ArrayList<>();
 	
 	public QualityType() {
 		
@@ -61,6 +62,13 @@ public class QualityType {
 
 	public void setQualityScores(List<QualityScore> qualityScore) {
 		this.qualityScores = qualityScore;
+	}
+	
+	public void addScore(Score score) {
+		QualityScore qs = new QualityScore();
+		qs.setQualityType(this);
+		qs.setScore(score);
+		this.qualityScores.add(qs);
 	}
 
 	@Column(name = "QTdescription")

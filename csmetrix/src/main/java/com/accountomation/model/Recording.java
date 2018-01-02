@@ -24,10 +24,24 @@ public class Recording {
 	private String name;
 	private Date date;
 	private Employee employee;
+	private String notes;
 	private List<RecordingQualityScore> recordingQualityScores = new ArrayList<>();
 	
 	public Recording() {
 		
+	}
+	
+	public Recording(Date date, String name, Employee employee, String notes) {
+		this.date = date;
+		this.name = name;
+		this.employee = employee;
+		this.notes = notes;
+	}
+	
+	public Recording(Date date, String name, String notes) {
+		this.date = date;
+		this.name = name;
+		this.notes = notes;
 	}
 
 	@Id
@@ -70,6 +84,15 @@ public class Recording {
 		this.employee = employee;
 	}
 
+	@Column(name = "Rnotes")
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 	@OneToMany(mappedBy = "recording", cascade = CascadeType.ALL)
 	public List<RecordingQualityScore> getRecordingQualityScores() {
 		return recordingQualityScores;
@@ -79,9 +102,8 @@ public class Recording {
 		this.recordingQualityScores = recordingQualityScores;
 	}
 	
-	public void scoreRecording(QualityScore score, RecordingQualityScore recordingQualityScore) {
-		recordingQualityScore.setRecording(this);
-		recordingQualityScore.setQualityScore(score);
+	public void scoreRecording(QualityScore score) {
+		RecordingQualityScore recordingQualityScore = new RecordingQualityScore(this, score);
 		recordingQualityScores.add(recordingQualityScore);
 	}
 }

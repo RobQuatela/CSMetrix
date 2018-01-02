@@ -23,6 +23,10 @@ public class Employee {
 	private List<EmployeeTeam> employeeTeams = new ArrayList<>();
 	private List<Recording> recordings = new ArrayList<>();
 	
+	public Employee() {
+		
+	}
+	
 	public Employee(String id, String name, String status, String type) {
 		this.id = id;
 		this.name = name;

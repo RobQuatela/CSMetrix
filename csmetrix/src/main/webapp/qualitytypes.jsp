@@ -9,8 +9,9 @@
 </head>
 <body>
 	<h1>Quality types</h1>
+	<a href="Recordings">Recordings</a>
 	<br />
-	<form name="frmAddQuality" method="POST" action="QualityTypesController">
+	<form name="frmAddQuality" method="POST" action="QualityTypes">
 		<Strong>Name: </Strong><input type="text" name="txtName"><br />
 		<Strong>Description: </Strong><br />
 		<input type="text" name="txtDescription"><br />
