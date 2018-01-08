@@ -25,6 +25,7 @@
 	function getRecID(x) {
 		console.log("Starting...getRecID()");
 		document.getElementById("hRecording").value = x.id;
+		document.getElementById("hRecordingSearch").value = x.id;
 		console.log("hRecording: " + document.getElementById("hRecording").value);
 		console.log(x.cells[0].innerHTML);
 		document.getElementById("txtScoreName").value = x.cells[0].innerHTML;
@@ -64,32 +65,52 @@
 	<label for="dtpStart">Start:</label><input id="dtpStart" name ="dtpStart" type="date" value="${start }"/>
 	<label for="dtpEnd">End:</label><input id="dtpEnd" name="dtpEnd" type="date" value="${end }" />
 	<input type="submit" name="btnSearch" value="Submit">
+	<input type="hidden" name="hRecordingSearch" id="hRecordingSearch">
 	<br />
+	<label for="tbRecordings">Recordings:</label>
 	<table id="tbRecordings">
 		<tr>
 			<th>Name</th>
 			<th>Date</th>
+			<th>Notes</th>
 		</tr>
 		<c:forEach var="recording" items="${recordings }">
 			<tr id="${recording.getId() }" onclick="getRecID(this)">
 				<td id="recName">${recording.getName() }</td>
 				<td>${recording.getDate() }</td>
+				<td>${recording.getNotes() }</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<br />
+	<label for="tbScores">Scores:</label>
+	<table id="tbScores">
+		<tr>
+			<th>Quality Type</th>
+			<th>Score</th>
+		</tr>
+		<c:forEach var="score" items="${scores }">
+			<tr>
+				<td>${score.getQualityScore().getQualityType().getName() }</td>
+				<td>${score.getQualityScore().getScore().getId() }</td>
 			</tr>
 		</c:forEach>
 	</table>
 	
 </form>
 <form name="frmAddRecording" method="post" action="Recordings">
+<h2>Add Recording:</h2> <br />
 	<input type="hidden" name="hEmployee" id="hEmployee">
 	<label for="txtName">Name: </label><input type="text" id="txtName" name="txtName"><br />
 	<label for="dtpDate">Date: </label><input type="date" id="dtpDate" name="dtpDate"><br />
 	<label for="txtNotes">Notes: </label><input type="text" id="txtNotes" name="txtNotes"><br />
-	<input type="submit" name="btnInsertRec" value="Insert">
+	<input type="submit" name="btnInsertRec" value="Insert Recording">
 </form>
 <form name="frmScoreRecording" method="post" action="Recordings">
 	<input type="hidden" name="hRecording" id="hRecording">
 	<input type="text" name="txtScoreName" id="txtScoreName">
 	<br />
+	<label for="tbQualities">Qualities:</label>
 	<table id="tbQualities">
 		<tr>
 			<th>Name</th>

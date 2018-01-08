@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.accountomation.model.Employee;
 import com.accountomation.model.QualityType;
 import com.accountomation.model.Recording;
+import com.accountomation.model.RecordingQualityScore;
 import com.accountomation.service.EmployeeService;
 import com.accountomation.service.QualityTypeService;
 import com.accountomation.service.RecordingService;
@@ -39,6 +40,7 @@ public class RecordingsController extends HttpServlet {
 		Employee employee;
 		LocalDate start;
 		LocalDate end;
+		int recId;
 		
 		try {
 			employee = EmployeeService.retrieve(request.getParameter("lstEmployee"));
@@ -55,7 +57,13 @@ public class RecordingsController extends HttpServlet {
 		} catch(Exception e) {
 			end = LocalDate.now();
 		}
+		try {
+			recId = Integer.parseInt(request.getParameter("hRecordingSearch"));
+		} catch(Exception e) {
+			recId = 1;
+		}
 		
+		List<RecordingQualityScore> scores = RecordingService.retrieve(recId).getRecordingQualityScores();
 		List<Recording> recordings = RecordingService.retrieve(employee, start, end);
 		List<QualityType> qts = QualityTypeService.retrieve();
 		
@@ -65,6 +73,7 @@ public class RecordingsController extends HttpServlet {
 		request.setAttribute("employees", employees);
 		request.setAttribute("recordings", recordings);
 		request.setAttribute("qualities", qts);
+		request.setAttribute("scores", scores);
 		request.getRequestDispatcher("recordings.jsp").forward(request, response);
 	}
 
