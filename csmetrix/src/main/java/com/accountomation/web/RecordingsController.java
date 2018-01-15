@@ -95,10 +95,10 @@ public class RecordingsController extends HttpServlet {
 		
 		if(btnInsertScores != null) {
 			String[] qs = request.getParameterValues("ddlQualityScores");
-			int recId = Integer.parseInt(request.getParameter("hRecording"));
+			long recId = Long.parseLong(request.getParameter("hRecording"));
 			
 			for(String q : qs) {
-				int qid = Integer.parseInt(q);
+				long qid = Long.parseLong(q);
 				RecordingService.scoreRecording(recId, qid);
 			}
 			

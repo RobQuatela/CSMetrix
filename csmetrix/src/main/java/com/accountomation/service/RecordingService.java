@@ -59,14 +59,15 @@ public class RecordingService {
 		session.getTransaction().commit();
 	}
 	
-	public static void scoreRecording(int recId, int scoreId) {
-		Recording rec = retrieve(recId);
-		QualityScore qs = QualityScoreService.retrieve(scoreId);
-		rec.scoreRecording(qs);
+	public static void scoreRecording(long recId, long scoreId) {
+		//Recording rec = retrieve(recId);
+		//QualityScore qs = QualityScoreService.retrieve(scoreId);
+		//rec.scoreRecording(qs);
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-
-		session.merge(rec);
+		Recording rec = session.load(Recording.class, recId);
+		QualityScore qs = session.load(QualityScore.class, scoreId);
+		rec.scoreRecording(qs);
 		session.getTransaction().commit();
 	}
 }

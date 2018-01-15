@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "QualityScores")
 public class QualityScore {
 
-	private int id;
+	private long id;
 	private QualityType qualityType;
 	private Score score;
 	private List<RecordingQualityScore> recordingQualityScores = new ArrayList<>();
@@ -28,7 +28,7 @@ public class QualityScore {
 		
 	}
 	
-	public QualityScore(int id, QualityType qualityType, Score score) {
+	public QualityScore(long id, QualityType qualityType, Score score) {
 		this.id = id;
 		this.qualityType = qualityType;
 		this.score = score;
@@ -37,11 +37,11 @@ public class QualityScore {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "QSid")
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

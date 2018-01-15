@@ -20,7 +20,7 @@ public class PopulateData {
 		ArrayList<QualityType> qts = new ArrayList<>();
 		ArrayList<Score> scores = new ArrayList<>();
 		int i = 1;
-		while(i < 11) {
+		while(i < 6) {
 			scores.add(new Score(i));
 			i++;
 		}

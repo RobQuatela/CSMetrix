@@ -36,14 +36,16 @@ public class EmployeeService {
 			.where(session.getCriteriaBuilder().equal(root.get("id"), id));
 		Query<Employee> query = session.createQuery(criteria);
 		Employee emp = query.getSingleResult();
-		
+		//session.close();
 		return emp;
 	}
 	
 	public static void addRecording(Employee emp, Recording rec) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.getTransaction().begin();
-		emp.addToRecording(rec);
+		Employee emp1 = session.load(Employee.class, emp.getId());
+		emp1.addToRecording(rec);
+		//session.update(emp);
 		session.getTransaction().commit();
 	}
 }
