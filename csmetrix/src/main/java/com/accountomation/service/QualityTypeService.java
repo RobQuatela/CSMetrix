@@ -30,6 +30,7 @@ public class QualityTypeService {
 		
 		session.save(qt);
 		session.getTransaction().commit();
+		session.close();
 	}
 	
 	public static List<QualityType> retrieve() {
@@ -41,6 +42,7 @@ public class QualityTypeService {
 		criteria.select(root);
 		Query<QualityType> query = session.createQuery(criteria);
 		List<QualityType> qts = query.getResultList();
+		//session.close();
 		return qts;
 	}
 }

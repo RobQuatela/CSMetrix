@@ -32,12 +32,13 @@ public class RecordingService {
 				);
 		Query<Recording> query = session.createQuery(criteria);
 		List<Recording> recordings = query.getResultList();
+		session.close();
 		
 		return recordings;
 		
 	}
 	
-	public static Recording retrieve(int id) {
+	public static Recording retrieve(long id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		CriteriaQuery<Recording> criteria = session.getCriteriaBuilder().createQuery(Recording.class);
 		Root<Recording> root = criteria.from(Recording.class);
@@ -46,6 +47,8 @@ public class RecordingService {
 			.where(session.getCriteriaBuilder().equal(root.get("id"), id));
 		Query<Recording> query = session.createQuery(criteria);
 		Recording rec = query.getSingleResult();
+		//Recording rec = session.load(Recording.class, id);
+		//session.close();
 		
 		return rec;
 	}
@@ -57,6 +60,7 @@ public class RecordingService {
 		session.save(rec);
 		
 		session.getTransaction().commit();
+		session.close();
 	}
 	
 	public static void scoreRecording(long recId, long scoreId) {
@@ -69,5 +73,6 @@ public class RecordingService {
 		QualityScore qs = session.load(QualityScore.class, scoreId);
 		rec.scoreRecording(qs);
 		session.getTransaction().commit();
+		session.close();
 	}
 }

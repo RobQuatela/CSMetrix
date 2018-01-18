@@ -13,14 +13,14 @@ public class QualityScoreService {
 
 	public static QualityScore retrieve(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		CriteriaQuery<QualityScore> criteria = session.getCriteriaBuilder().createQuery(QualityScore.class);
+/*		CriteriaQuery<QualityScore> criteria = session.getCriteriaBuilder().createQuery(QualityScore.class);
 		Root<QualityScore> root = criteria.from(QualityScore.class);
 		criteria
 			.select(root)
 			.where(session.getCriteriaBuilder().equal(root.get("id"), id));
-		Query<QualityScore> query = session.createQuery(criteria);
-		QualityScore qs = query.getSingleResult();
-		
+		Query<QualityScore> query = session.createQuery(criteria);*/
+		QualityScore qs = session.load(QualityScore.class, id);
+		session.close();
 		return qs;
 	}
 }

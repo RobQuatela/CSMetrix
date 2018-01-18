@@ -40,7 +40,8 @@ public class RecordingsController extends HttpServlet {
 		Employee employee;
 		LocalDate start;
 		LocalDate end;
-		int recId;
+		
+		long recId;
 		
 		try {
 			employee = EmployeeService.retrieve(request.getParameter("lstEmployee"));
@@ -66,6 +67,9 @@ public class RecordingsController extends HttpServlet {
 		List<RecordingQualityScore> scores = RecordingService.retrieve(recId).getRecordingQualityScores();
 		List<Recording> recordings = RecordingService.retrieve(employee, start, end);
 		List<QualityType> qts = QualityTypeService.retrieve();
+		int total = 0;
+		for(RecordingQualityScore score : scores)
+			total += score.getQualityScore().getScore().getId();
 		
 		request.setAttribute("empID", employee.getId());
 		request.setAttribute("start", start);
@@ -74,6 +78,7 @@ public class RecordingsController extends HttpServlet {
 		request.setAttribute("recordings", recordings);
 		request.setAttribute("qualities", qts);
 		request.setAttribute("scores", scores);
+		request.setAttribute("total", total);
 		request.getRequestDispatcher("recordings.jsp").forward(request, response);
 	}
 
